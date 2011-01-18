@@ -8,7 +8,7 @@ define("API_USER", "user");
 define("API_PASSWORD", "3150ebe08f4c66a3ba3f");
 
 //calls messagesFailed
-$service_url = 'https://api.email-od.com/messagesFailed?accountId=' . ACCOUNT_ID . '&type=xml';
+$service_url = 'https://api.socketlabs.com/messagesFailed?accountId=' . ACCOUNT_ID . '&type=xml';
 $curl = curl_init($service_url);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_USERPWD, API_USER . ':' . API_PASSWORD);
