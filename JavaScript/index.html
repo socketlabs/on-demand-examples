@@ -48,7 +48,7 @@
 				return false;
 			}
 
-			var url = "https://api.email-od.com/messagesFailed";
+			var url = "https://api.socketlabs.com/messagesFailed";
 			var query = $("input[value]!=''").serialize();
 			$("#api-call").empty().html("<h3>API Call</h3>" + url + "?" + query + "&type=json");
 		  $("#results").empty().html('<img src="loading.gif" /> &nbsp;Executing...');
