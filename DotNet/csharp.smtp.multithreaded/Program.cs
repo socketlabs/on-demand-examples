@@ -27,7 +27,7 @@ namespace Bulk_Sender
             */
             for (int x = 0; x < 4; x++)
             {
-                threadsOpen++;
+                Interlocked.Increment(ref threadsOpen);
                 System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(SendThread));
                 t.Start();
             }
@@ -78,7 +78,7 @@ namespace Bulk_Sender
 
 
 
-            threadsOpen--;
+            Interlocked.Decrement(ref threadsOpen);
         }
 
         static string BulkReplace(string txt, Dictionary<string, string> tokens)
