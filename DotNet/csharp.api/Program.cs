@@ -16,7 +16,7 @@ namespace SocketLabs.OnDemand.Api
 			string userName = "YOUR-USER-NAME";
 			string password = "YOUR-API-PASSWORD";
 
-			var apiUri = new Uri("https://api.socketlabs.com/messagesProcessed?type=xml&accountId=" + accountId);
+			var apiUri = new Uri("https://api.socketlabs.com/v1/messagesProcessed?type=xml&accountId=" + accountId);
 			var creds = new NetworkCredential(userName, password);
 			var auth = creds.GetCredential(apiUri, "Basic");
 
