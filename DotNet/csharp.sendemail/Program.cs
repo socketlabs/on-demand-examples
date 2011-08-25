@@ -13,7 +13,7 @@ namespace SocketLabs.OnDemand.Api
 	{
 		private static void Main(string[] args)
 		{
-			string smtpHost = "YOUR-SMTP-HOST";
+			const string smtpHost = "smtp.socketlabs.com";
 			int smtpPort = 2525; // standard is port 25 but that is blocked by many ISP's
 			string smtpUserName = "YOUR-SMTP-USER-NAME";
 			string smtpPassword = "YOUR-SMTP-API-PASSWORD";
