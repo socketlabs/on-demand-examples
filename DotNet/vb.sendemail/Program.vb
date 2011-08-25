@@ -9,7 +9,7 @@ Imports System.Xml.Linq
 Namespace SocketLabs.OnDemand.Api
 	Friend Class Program
 		Private Shared Sub Main(args As String())
-			Dim smtpHost As String = "YOUR-SMTP-HOST"
+			Dim smtpHost As String = "smtp.socketlabs.com"
 			Dim smtpPort As Integer = 2525
 			' standard is port 25 but that is blocked by many ISP's
 			Dim smtpUserName As String = "YOUR-SMTP-USER-NAME"
