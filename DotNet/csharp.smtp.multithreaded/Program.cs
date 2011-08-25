@@ -46,7 +46,7 @@ namespace Bulk_Sender
         {
             //create SMTP object
             SMTP objSMTP = new SMTP();
-            objSMTP.SMTPServers.Add("your_smtp_server_address", 25, 60, SMTPAuthMode.AuthLogin, "your_smtp_user", "your_smtp_password");
+            objSMTP.SMTPServers.Add("smtp.socketlabs.com", 25, 60, SMTPAuthMode.AuthLogin, "your_smtp_user", "your_smtp_password");
 
             /*
              * this sample just sends one message per thread/connection but in the real world you should send about
