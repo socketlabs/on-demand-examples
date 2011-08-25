@@ -10,11 +10,14 @@
 <div style="width:800px;">
 	<p>This interactive example uses the Email On-Demand API to retrieve email delivery failures.  See the API documentation
 		for a complete list of parameters, return values and their descriptions.</p>
+	<p>For this example, your browser should give you a poup dialog for standard HTTP 1.1 Basic
+		Authentication against the SocketLabs API when asking for the results, unless it has already cached or stored those
+		credentials for you.</p>
 	<table width="800">
 	<tbody>
 	<tr>
-		<th>Account Id</th>
-		<td><input type="text" name="accountId" /></td>
+		<th>Server Id</th>
+		<td><input type="text" name="serverId" /></td>
 		<th>Start Index</th>
 		<td><input type="text" name="index" /></td>
 		<th>Record Count</th>
@@ -43,13 +46,9 @@
 
 		$("#get-api-results").click(function() {
 
-			if ($("#userName, #password").val() == "") {
-				alert("You must enter your username and password.");
-				return false;
-			}
 
-			var url = "https://api.socketlabs.com/messagesFailed";
-			var query = $("input[value]!=''").serialize();
+			var url = "https://api.socketlabs.com/v1/messagesFailed";
+			var query = $("input[value]!=''").not("#userName, #password").serialize();
 			$("#api-call").empty().html("<h3>API Call</h3>" + url + "?" + query + "&type=json");
 		  $("#results").empty().html('<img src="loading.gif" /> &nbsp;Executing...');
 			timeDiff.setStartTime();
