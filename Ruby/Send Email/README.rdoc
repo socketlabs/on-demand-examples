@@ -1,0 +1,33 @@
+= SocketLabs Gem
+
+Ruby gem for sending email through SocketLabs Email On-Demand
+
+== Installation
+  
+  sudo gem install socketlabs
+  
+== Example
+
+  require 'socketlabs'
+  SocketLabs.url="https://api.socketlabs.com/v1/email/send"
+  SocketLabs.user='your_user_name'
+  SocketLabs.pw='your_api_password'
+
+  # You can instantiate the EmailMessage object and work with its properties and methods
+  msg = SocketLabs::EmailMessage.new
+  msg.from = 'sender@domain.com'
+  msg.to = 'recipient@domain.com'
+  msg.subject = 'Subject of message'
+
+  # You can specify a text and/or HTML body.
+  msg.textBody = 'This is the text message body.'
+  msg.htmlBody = '<html><body>This is the text message body.</html></body>'
+
+  # You can specify custom headers
+  msg.headers = {:X-MyHeader=>'Value', :List-Unsubscribe=>'Value'}
+
+  msg.send
+
+== Copyright
+
+Copyright (c)2010 SocketLabs, Inc.

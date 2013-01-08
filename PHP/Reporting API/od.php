@@ -4,8 +4,8 @@
 //
 //replace the following constant **** values with your own
 define("SERVER_ID", "9999");
-define("API_USER", "user");
-define("API_PASSWORD", "3150ebe08f4c66a3ba3f");
+define("API_USER", "username");
+define("API_PASSWORD", "YOUR API KEY HERE");
 
 //calls messagesFailed
 $service_url = 'https://api.socketlabs.com/v1/messagesFailed?serverId=' . SERVER_ID . '&type=xml';
