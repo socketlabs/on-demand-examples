@@ -15,6 +15,7 @@ merge_data[:PerMessage]=[
             
 #build mesage in a hash table, include merge data from above
 data=Hash.new
+data[:ServerId]="YOUR SERVER ID HERE"
 data[:ApiKey]="YOUR API KEY HERE"
 data[:Messages]=[
                   {

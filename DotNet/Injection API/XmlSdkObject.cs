@@ -21,6 +21,7 @@ namespace SocketLabs.OnDemand.Api.HttpInjection
         /// 
         ///<?xml version="1.0" encoding="utf-8"?>
         ///<PostBody xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        ///    <ServerId>YOUR SERVER ID HERE</ServerId>
         ///    <ApiKey>YOUR API KEY HERE</ApiKey>
         ///    <Messages>
         ///        <EmailMessage>
@@ -41,7 +42,8 @@ namespace SocketLabs.OnDemand.Api.HttpInjection
         ///    </Messages>
         ///</PostBody>
         /// </summary>
-        public static void SimpleInjectionViaSdkObjectAsXml(string yourApiKey, string apiUrl)
+        public static void SimpleInjectionViaSdkObjectAsXml(
+            int serverId, string yourApiKey, string apiUrl)
         {
             // The client object processes requests to the SocketLabs Injection API.
             var client = new RestClient(apiUrl);
@@ -49,6 +51,7 @@ namespace SocketLabs.OnDemand.Api.HttpInjection
             // Construct the object used to generate XML for the POST request.
             var postBody = new PostBody
             {
+                ServerId = serverId,
                 ApiKey = yourApiKey,
                 Messages = new[]
                 {

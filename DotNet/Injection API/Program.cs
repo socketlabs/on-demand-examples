@@ -17,6 +17,7 @@
 
             // Used to define the api key used by the samples.
             const string apiKey = "YOUR API KEY HERE";
+            const int serverId = 0; // "YOUR SERVER ID HERE";
 
             // Used to define the API call location.
             const string apiUrl = "https://inject.socketlabs.com/api/v1/email";
@@ -24,21 +25,21 @@
             // Simple JSON examples.
 
             // Example 1 - POST Request via SocketLabs object.
-            Samples.SimpleInjectionViaSdkObjectAsJson(apiKey, apiUrl);
+            Samples.SimpleInjectionViaSdkObjectAsJson(serverId, apiKey, apiUrl);
 
             // Example 2 - POST Request via Key/Value pair composite objects.
-            Samples.SimpleInjectionViaRestSharpAsJson(apiKey, apiUrl);
+            Samples.SimpleInjectionViaRestSharpAsJson(serverId, apiKey, apiUrl);
 
             // Example 3 - POST Request via raw JSON.
-            Samples.SimpleInjectionViaStringAsJson(apiKey, apiUrl);
+            Samples.SimpleInjectionViaStringAsJson(serverId, apiKey, apiUrl);
 
             // Simple XML example.
 
-            Samples.SimpleInjectionViaSdkObjectAsXml(apiKey, apiUrl);
+            Samples.SimpleInjectionViaSdkObjectAsXml(serverId, apiKey, apiUrl);
 
             // Complete JSON example. Multiple recipients and inline mail merge.
 
-            Samples.CompleteInjectionViaSdkObjectAsJson(apiKey, apiUrl);
+            Samples.CompleteInjectionViaSdkObjectAsJson(serverId, apiKey, apiUrl);
         }
     }
 }

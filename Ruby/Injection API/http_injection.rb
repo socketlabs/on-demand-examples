@@ -9,6 +9,7 @@ require 'net/https'
 
 #build mesage in a hash table
 data=Hash.new
+data[:ServerId]="YOUR SERVER ID HERE"
 data[:ApiKey]="YOUR API KEY HERE"
 data[:Messages]=[{ :Subject=>'Test', 
                   :To=>[{:EmailAddress=>'recipient@example.com'}], 
