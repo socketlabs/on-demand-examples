@@ -2,18 +2,22 @@ These samples show how to call the SocketLabs Email On-Demand API and how to sen
 
 ----
 
-Sample code for sending email through our system:
+**Sample code for sending email through our system:**
 - Microsoft.NET Platform (VB.NET / C#)
 - Ruby
 
-Sample code for the Reporting API:
+**Sample code for the Reporting API:**
 - Microsoft.NET Platform (C#)
 - PHP
 - JavaScript
 
-Sample code for the Injection API:
+**Sample code for the Injection API:**
 - Microsoft.NET Platform (C#)
 - PHP
 - Ruby
+ 
+**Sample code for the Notifications API:**
+- Microsoft.NET - ASP.NET MVC 3 (C#)
+
 
 See http://api.socketlabs.com for complete API documentation.
