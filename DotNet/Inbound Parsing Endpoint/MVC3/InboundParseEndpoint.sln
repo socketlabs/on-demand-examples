@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InboundParseEndpoint", "InboundParseEndpoint\InboundParseEndpoint.csproj", "{B135D91C-34E5-4BB2-B266-41524C503209}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEndpoint", "InboundParseEndpoint\TestEndpoint.csproj", "{B135D91C-34E5-4BB2-B266-41524C503209}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

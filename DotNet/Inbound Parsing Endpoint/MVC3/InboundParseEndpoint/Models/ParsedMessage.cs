@@ -33,9 +33,9 @@ namespace InboundParseEndpoint.Models
         public Address[] Bcc { get; set; }
         public Address From { get; set; }
         public Address ReplyTo { get; set; }
-        public string Charset { get; set; }
         public Attachment[] Attachments { get; set; }
     }
+    
     public class Address
     {
         public string EmailAddress { get; set; }
@@ -44,12 +44,13 @@ namespace InboundParseEndpoint.Models
 
     public class Attachment
     {
-        public string Name;
-        public string ContentType;
-        public string Content;
-        public CustomHeader[] CustomHeaders;
-        public string ContentId;
+        public string Name { get; set; }
+        public string ContentType { get; set; }
+        public string Content { get; set; }
+        public CustomHeader[] CustomHeaders { get; set; }
+        public string ContentId { get; set; }
     }
+    
     public class CustomHeader
     {
         public string Name { get; set; }
