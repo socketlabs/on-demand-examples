@@ -1,0 +1,13 @@
+This project demonstrates SocketLabs' "Inbound Parse" feature.
+
+Inbound Parse allows you to have all emails going to a particular address or domain automatically dissected into their constituent parts and sent via HTTP POST requests to a processing endpoint of your choosing. This endpoint can then do something interesting with these parsed messages.
+
+The code in this repository is an example of one such endpoint. It does the following:
+    1. Collects all incoming POST events for each received email
+    2. Analyzes them for some quick stats we might want to analyze in real-time for some business purpose. In this example:
+        - The frequency of the top keywords in email messages, displayed in a chart
+    3. Persists the parsed email messages into a database for any subsequent analysis we might want to pursue
+
+Though just made up for this example, the analysis performed by this endpoint could be useful for, say, getting a quick idea of hot-button issues in your support-system emails. Or maybe you want to know the timeline of when people are taking action with sales inquiries emails relative to sales campaigns. Use-cases are many.
+
+NOTE: Run the command npm install to download and install the required MongoDB and socket.io modules.

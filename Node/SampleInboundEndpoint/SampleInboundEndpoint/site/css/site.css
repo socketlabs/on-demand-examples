@@ -1,0 +1,27 @@
+body {
+  margin: 0 auto;
+}
+.chart rect {
+  stroke: white;
+  fill: steelblue;
+}
+.chart text {
+  fill: black;
+  font-size: 10px;
+}
+.chart text.rule {
+  fill: gray;
+  font-size: 10px;
+}
+.container, .note {
+  width: 450px;
+  margin: 100px auto 0 auto;
+}      
+.note {
+  width: 450px;
+  margin: 0 auto 0 auto;
+}
+text.quantities {
+  font-size: 14px;
+  fill: white;
+}
