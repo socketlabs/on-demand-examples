@@ -15,11 +15,13 @@ namespace InboundParseEndpoint.Controllers
         public HomeController()
         {
             // Sample ServerId = 9999, Validation Key = "myValidationKey", Secret Key = "mySecretKey"
-            _keys.Add(9999, new KeysContainer
-                {
-                    SecretKey = "mySecretKey",
-                    ValidationKey = "myValidationKey"
-                });
+            //_keys.Add(9999, new KeysContainer
+            //    {
+            //        SecretKey = "mySecretKey",
+            //        ValidationKey = "myValidationKey"
+            //    });
+
+
         }
 
         public void Index()

@@ -27,8 +27,8 @@ namespace NotificationsEndpoint.Controllers
                             // Format: Your ServerId, new KeyValuePair<string, string>("YOUR SECRETKEY","YOUR VALIDATIONKEY")
                             // If you have (or might add) multiple servers to your account, using a collection for the config
                             // will allow you to store results for multiple servers with the same endpoint
-                            {9998, new KeyValuePair<string, string>("Nth6D3WbYKCyDd7ePekk", "bKeGTASnMjajGcEt9Xfn")},  
-                            {9999, new KeyValuePair<string, string>("bKeGTASnMjajGcEt9Xfn", "Nth6D3WbYKCyDd7ePekk")},                      
+                    
+                            // {serverIsGoesHere, new KeyValuePair<string, string>("YOUR SECRETKEY", "YOUR VALIDATIONKEY")},
                         };
             }
         }
