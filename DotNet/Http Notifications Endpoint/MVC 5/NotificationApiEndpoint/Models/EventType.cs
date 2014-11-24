@@ -1,4 +1,4 @@
-﻿namespace NotificationsEndpoint.Models
+﻿namespace NotificationApiEndpoint.Models
 {
     /// <summary>
     /// Enumeration of the Available Event Types

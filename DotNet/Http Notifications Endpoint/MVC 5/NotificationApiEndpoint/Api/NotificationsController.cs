@@ -1,34 +1,27 @@
 ﻿using Newtonsoft.Json;
-using NotificationsEndpoint.Models;
+using NotificationApiEndpoint.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Web.Mvc;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Formatting;
+using System.Web.Http;
 
-namespace NotificationsEndpoint.Controllers
+namespace NotificationApiEndpoint.Api
 {
-    // TEST - clear memory controller/method
-    // TODO - separate out events into arrays per type (perhaps per page)
-    // TODO - Create an overview page with counters/links to each event type
-    // TEST - pretty print all of the JSON, possibly annotating it (use JSON.Net)
-    // TEST - upgrade to MVC 5
-
-    public class HomeController : Controller
+    [RoutePrefix("api/notifications")]
+    public class NotificationsController : ApiController
     {
         // We're using an in-memory collection to store data in for the purposes of this demo.
         // in a real application, you'd probably be storing these events in a file system or database
-        private static List<SocketLabsEvent> _storedEvents;
-        private static List<SocketLabsEvent> _unknownEvents;
-
+        private static readonly List<SocketLabsEvent> DeliveryEvents = new List<SocketLabsEvent>();
+        private static readonly List<SocketLabsEvent> TrackingEvents = new List<SocketLabsEvent>();
+        private static readonly List<SocketLabsEvent> UnknownEvents = new List<SocketLabsEvent>();
         private static Dictionary<long, KeyValuePair<string, string>> _config;
 
-        public HomeController()
+        public NotificationsController()
         {
-            if (_storedEvents == null)
-                _storedEvents = new List<SocketLabsEvent>();
-            if (_unknownEvents == null)
-                _unknownEvents = new List<SocketLabsEvent>();
-            
             if (_config == null)
             {
                 // Load a test key from Web.config, if it exists.
@@ -38,6 +31,7 @@ namespace NotificationsEndpoint.Controllers
 
                 _config = new Dictionary<long, KeyValuePair<string, string>>
                 {
+                    // Add in the test credentials from the Web.Config
                     {Convert.ToInt64(server), new KeyValuePair<string, string>(secretKey, validationKey)}
                     
                     // Format: Your ServerId, new KeyValuePair<string, string>("YOUR SECRETKEY","YOUR VALIDATIONKEY")
@@ -49,29 +43,58 @@ namespace NotificationsEndpoint.Controllers
             }
         }
 
-        // GET /home/index
-        [HttpGet, ActionName("index")]
-        public ActionResult GetEvents()
+        private HttpResponseMessage ReturnData(object data)
         {
-            // This is for DEMO purposes only.  SocketLabs does NOT recommend exposing these events to the outside world
-            var data = JsonConvert.SerializeObject(new {_storedEvents, _unknownEvents}, Formatting.Indented);
-            ViewBag.Result = new JsonResult {Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
-            return View();
+            return Request.CreateResponse(HttpStatusCode.OK, 
+                new
+                {
+                    Json = data, 
+                    DeliveryCount = DeliveryEvents.Count, 
+                    TrackingCount = TrackingEvents.Count, 
+                    UnknownCount = UnknownEvents.Count
+                });
         }
 
-        // GET /home/index
-        [HttpGet, ActionName("reset")]
-        public ActionResult Reset()
+        [HttpGet, Route("")]
+        public HttpResponseMessage Get()
         {
-            _storedEvents.Clear();
-            _unknownEvents.Clear();
-            var data = JsonConvert.SerializeObject(new { _storedEvents, _unknownEvents }, Formatting.Indented);
-            return new JsonResult {Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
+            var data = JsonConvert.SerializeObject(new {DeliveryEvents, TrackingEvents, UnknownEvents}, Formatting.Indented);
+            return ReturnData(data);
         }
 
-        // POST /home/index
-        [HttpPost, ActionName("Index"), ValidateInput(false)]
-        public ActionResult PostEvent(FormCollection formCollection)
+        [HttpGet, Route("delivery")]
+        public HttpResponseMessage GetDeliveryEventsOnly()
+        {
+            var data = JsonConvert.SerializeObject(new { DeliveryEvents }, Formatting.Indented);
+            return ReturnData(data);
+        }
+
+        [HttpGet, Route("tracking")]
+        public HttpResponseMessage GetTrackingEventsOnly()
+        {
+            var data = JsonConvert.SerializeObject(new { TrackingEvents }, Formatting.Indented);
+            return ReturnData(data);
+        }
+
+        [HttpGet, Route("unknown")]
+        public HttpResponseMessage GetUnknownEventsOnly()
+        {
+            var data = JsonConvert.SerializeObject(new { UnknownEvents }, Formatting.Indented);
+            return ReturnData(data);
+        }
+
+        [HttpGet, Route("reset")]
+        public HttpResponseMessage Reset()
+        {
+            DeliveryEvents.Clear();
+            TrackingEvents.Clear();
+            UnknownEvents.Clear();
+            var data = JsonConvert.SerializeObject(new { DeliveryEvents, TrackingEvents, UnknownEvents }, Formatting.Indented);
+            return ReturnData(data);
+        }
+
+        [HttpPost, Route("~/NotificationEndpoint")]
+        public HttpResponseMessage PostEvent(FormDataCollection formCollection)
         {
             var model = new SocketLabsEvent(formCollection);
 
@@ -87,33 +110,32 @@ namespace NotificationsEndpoint.Controllers
                         case EventType.Validation:
                             break; // we shouldn't save this, just return the key as per the API requirements
                         case EventType.Delivered:
-                            _storedEvents.Add(model);
+                            DeliveryEvents.Add(model);
                             // you might save this in a separate database table or repository from the others
                             break;
                         case EventType.Complaint:
-                            _storedEvents.Add(model);
+                            DeliveryEvents.Add(model);
                             // you might save this in a separate database table or repository from the others
                             break;
                         case EventType.Failed:
-                            _storedEvents.Add(model);
+                            DeliveryEvents.Add(model);
                             // you might save this in a separate database table or repository from the others
                             break;
                         case EventType.Tracking:
-                            _storedEvents.Add(model);
+                            TrackingEvents.Add(model);
                             // you might save this in a separate database table or repository from the others
                             break;
                         default:
-                            _unknownEvents.Add(model);
+                            UnknownEvents.Add(model);
                             // you might save this in a separate database table or repository from the others
                             break;
                     }
 
-                    return Content(config.Value); // the Validation Key...  not returning this will prevent proper function of your endpoint
+                    // the Validation Key...  not returning this will prevent proper function of your endpoint
+                    return Request.CreateResponse(HttpStatusCode.OK, config.Value);
                 }
             }
-
-            return new HttpUnauthorizedResult(); // ServerId vs SecretKey validation failed
+            return Request.CreateResponse(HttpStatusCode.Unauthorized, "Secret Key validation failed!");
         }
-
     }
 }
