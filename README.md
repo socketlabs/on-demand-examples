@@ -21,6 +21,7 @@ The Reporting API examples show how to retrieve information about messages sent 
 - Ruby
  
 **Sample code for the Notification API:**
+- Node.js
 - Microsoft.NET - ASP.NET MVC 5 / Web API 2 (C#)
 - Microsoft.NET - ASP.NET MVC 3 (C#)
 
