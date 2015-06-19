@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Web.Mvc;
 using SocketLabs.InboundParseApi.TestEndpoint.Mvc3.Models;
 
@@ -11,12 +13,17 @@ namespace SocketLabs.InboundParseApi.TestEndpoint.Mvc3.Controllers
 
         public HomeController()
         {
+            // Load a test key from Web.config, if it exists.
+            var serverId = Convert.ToInt32(ConfigurationManager.AppSettings["TestServer"]) ;
+            var secretKey = ConfigurationManager.AppSettings["TestSecretKey"];
+            var validationKey = ConfigurationManager.AppSettings["TestValidationKey"];
+
             // Sample ServerId = 9999, Validation Key = "myValidationKey", Secret Key = "mySecretKey"
-            //_keys.Add(9999, new KeysContainer
-            //    {
-            //        SecretKey = "mySecretKey",
-            //        ValidationKey = "myValidationKey"
-            //    });
+            _keys.Add(serverId, new KeysContainer
+                {
+                    SecretKey = secretKey,
+                    ValidationKey = validationKey
+                });
 
 
         }
