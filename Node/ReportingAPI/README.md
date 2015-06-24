@@ -1,6 +1,6 @@
 ## SocketLabs Email On-Demand Reporting API Example in Node.js
 
-This is a very basic [Node](https://nodejs.org/) application to call the [SocketLabs Reporting API](http://www.socketlabs.com/api-reference/reporting-api/).  We call the API using the [Request](https://github.com/request/request) node package
+This is a very basic [Node](https://nodejs.org/) application to call the [SocketLabs Reporting API](http://www.socketlabs.com/api-reference/reporting-api/).  We call the API using the [Request](https://github.com/request/request) node package.
 
 To get started, you must first obtain your API Key in the [SocketLabs Email On-Demand Control Panel](https://cp.socketlabs.com/security#/).  Once you have your API Key, open up the Node application's app.js file and insert your SocketLabs username, Reporting API key, and ServerID number (we have included the placeholder text where you will insert these values).
 
