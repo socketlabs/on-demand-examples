@@ -6,7 +6,7 @@ use LWP::UserAgent;
 
 my $baseurl = 'https://api.socketlabs.com/v1';
 my $apihost = 'api.socketlabs.com:443';
-my $apirealm = 'SocketLabs Secured API';
+my $apirealm = 'SocketLabsMarketingAPI';
 my $apiusername = 'YOUR USERNAME HERE';
 my $apipassword = 'YOUR PASSWORD HERE';
 my $serverid = 'YOUR SERVERID HERE';
