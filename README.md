@@ -11,8 +11,8 @@ The Reporting API examples show how to retrieve information about messages sent 
 
 **Sample code for the Reporting API:**
 - Microsoft.NET Platform (C#)
+- Node.js
 - PHP
-- JavaScript
 - Perl
 
 **Sample code for the Injection API:**
@@ -21,9 +21,9 @@ The Reporting API examples show how to retrieve information about messages sent 
 - Ruby
  
 **Sample code for the Notification API:**
-- Node.js
 - Microsoft.NET - ASP.NET MVC 5 / Web API 2 (C#)
-- Microsoft.NET - ASP.NET MVC 3 (C#)
+- Microsoft.NET - ASP.NET MVC 4 (C#)
+- Node.js
 
 **Sample code for the Inbound Parsing API:**
 - Microsoft.NET - ASP.NET MVC 3 (C#)
