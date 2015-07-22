@@ -1,17 +1,63 @@
 ﻿@{
     Layout = null;
-    var result = ViewBag.Result;
 }
 
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <title>title</title>
-    </head>
+<head>
+    <title>SocketLabs Example Notification API Endpoint</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        td {text-align: center}
+        th {border: 1px solid black; text-align: center}
+        a:link {color: #FF3300}
+        a:visited {color: #FF3300}
+        a:hover {color: #FF3300}
+        a:active {color: #FF3300}
+        body {margin-left: 30px; width: 80%}
+    </style>
+</head>
     <body>
-        <div>
-            @result
-        </div>
+        <h2>Overview & Navigation</h2>
+        <table>
+            <tr>
+                <th style="width:100px">Counters</th>
+                <th style="width:200px">Notification Filters</th>
+            </tr>
+            <tr><td id="count-all"></td><td><a href="/api/notifications" class="results-link">All Notifications</a></td></tr>
+            <tr><td id="count-delivery"></td><td><a href="/api/notifications/delivery" class="results-link">Delivery Notifications Only</a></td></tr>
+            <tr><td id="count-tracking"></td><td><a href="/api/notifications/tracking" class="results-link">Tracking Notifications Only</a></td></tr>
+            <tr><td id="count-unknown"></td><td><a href="/api/notifications/unknown" class="results-link">Unknown Notifications Only</a></td></tr>
+            <tr><td>-</td><td><a href="/api/notifications/reset" class="results-link">Clear All Notifications</a></td></tr>
+        </table>
+        <h2>Received Notifications</h2>
+    <div>
+        <pre id="result"></pre>
+    </div>
+        <script src="~/Scripts/jquery-1.9.1.js"></script>
+        <script>
+            $(".results-link").each(function(idx, elem) {
+                $(elem).on("click", function(event) {
+                    var url = $(elem).attr("href");
+                    event.preventDefault();
+                    $.get(url).done(function (data) {
+                        $("#result").html(data.Json);
+                        $("#count-all").html(data.DeliveryCount + data.TrackingCount + data.UnknownCount);
+                        $("#count-delivery").html(data.DeliveryCount);
+                        $("#count-tracking").html(data.TrackingCount);
+                        $("#count-unknown").html(data.UnknownCount);
+                    });
+                });
+            });
+            $(function() {
+                $.get("/api/notifications").done(function (data) {
+                    $("#result").html(data.Json);
+                    $("#count-all").html(data.DeliveryCount + data.TrackingCount + data.UnknownCount);
+                    $("#count-delivery").html(data.DeliveryCount);
+                    $("#count-tracking").html(data.TrackingCount);
+                    $("#count-unknown").html(data.UnknownCount);
+                });
+            });
+        </script>
     </body>
 </html>

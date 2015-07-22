@@ -1,4 +1,4 @@
-﻿namespace NotificationsEndpoint.Models
+﻿namespace NotificationApi.TestEndpoint.Mvc4.Models
 {
     /// <summary>
     /// Enumeration of the Available Event Types

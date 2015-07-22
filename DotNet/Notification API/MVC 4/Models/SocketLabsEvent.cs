@@ -1,69 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
+using System.Net.Http.Formatting;
 
-namespace NotificationsEndpoint.Models
+namespace NotificationApi.TestEndpoint.Mvc4.Models
 {
     /// <summary>
     /// An extended Dictionary to store values
     /// </summary>
     public class SocketLabsEvent
     {
+        public EventType Type { get; set; }
+        public long ServerId { get; set; }
+        public string Address { get; set; }
+        public DateTime DateTime { get; set; }
+        public string MailingId { get; set; }
+        public string MessageId { get; set; }
+        public string SecretKey { get; set; }
+        public Dictionary<string, string> ExtraData { get; set; }
+
         public SocketLabsEvent()
         {
             DateTime = DateTime.UtcNow;
         }
 
-        public SocketLabsEvent(FormCollection formCollection)
+        public SocketLabsEvent(FormDataCollection formCollection)
             : this()
         {
+            // Extract known members from the form collection
             ServerId = Convert.ToInt64(formCollection["ServerId"]);
             Address = formCollection["Address"];
-
-            EventType type;
-
-            if (Enum.TryParse(formCollection["Type"], true, out type))
-            {
-                formCollection.Remove("Type");
-            }
-            else
-            {
-                type = EventType.Unknown;
-            }
-
-            Type = type;
-
             DateTime = Convert.ToDateTime(formCollection["DateTime"]);
             MailingId = formCollection["MailingId"];
             MessageId = formCollection["MessageId"];
             SecretKey = formCollection["SecretKey"];
+            EventType type;
+            if (!Enum.TryParse(formCollection["Type"], true, out type))
+                type = EventType.Unknown;
+            Type = type;
 
-            formCollection.Remove("ServerId");
-            formCollection.Remove("Address");
-            formCollection.Remove("DateTime");
-            formCollection.Remove("MailingId");
-            formCollection.Remove("MessageId");
-            formCollection.Remove("SecretKey");
+            // Find all additional members from the form collection
+            var dictionary = new Dictionary<string, string>();
+            foreach (var entry in formCollection)
+            {
+                if (entry.Key != "Type" &&
+                    entry.Key != "ServerId" &&
+                    entry.Key != "Address" &&
+                    entry.Key != "DateTime" &&
+                    entry.Key != "MailingId" &&
+                    entry.Key != "MessageId" &&
+                    entry.Key != "SecretKey")
+                {
+                    dictionary[entry.Key] = entry.Value;
+                }
+            }
 
-            ExtraData = formCollection.AllKeys.ToDictionary(k => k, v => formCollection[v]);
+            ExtraData = dictionary;
         }
-
-
-        public EventType Type { get; set; }
-
-        public DateTime DateTime { get; set; }
-
-        public string MailingId { get; set; }
-
-        public string MessageId { get; set; }
-
-        public string Address { get; set; }
-
-        public long ServerId { get; set; }
-
-        public string SecretKey { get; set; }
-
-        public Dictionary<string, string> ExtraData { get; set; }
     }
 }

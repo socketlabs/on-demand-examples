@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="SocketLabs.NotificationApi.TestEndpoint.Mvc3.MvcApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="NotificationApi.TestEndpoint.Mvc4.MvcApplication" Language="C#" %>
