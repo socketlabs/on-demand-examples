@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JsonGenericApiTemplate.cs" />
     <Compile Include="JsonGenericObject.cs" />
     <Compile Include="JsonSdkObject.cs" />
     <Compile Include="JsonSdkObjectComplete.cs" />

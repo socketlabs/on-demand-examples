@@ -33,6 +33,9 @@
             // Example 3 - POST Request via raw JSON.
             Samples.SimpleInjectionViaStringAsJson(serverId, apiKey, apiUrl);
 
+            // Example 4 - POST Request with API Template
+            Samples.SimpleInjectionApiTemplate(serverId, apiKey, apiUrl);
+
             // Simple XML example.
 
             Samples.SimpleInjectionViaSdkObjectAsXml(serverId, apiKey, apiUrl);
