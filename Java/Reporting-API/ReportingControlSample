@@ -1,0 +1,54 @@
+
+
+// Class the handles connecting to the Reporting API and performing the HTTP GET request
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.Authenticator;
+import java.net.HttpURLConnection;
+import java.net.PasswordAuthentication;
+import java.net.URL;
+import java.net.URLConnection;
+
+
+
+public class ReportingControlSample {
+	
+    private static String reportingControl(){
+        String serverId = "YOUR SERVER ID";//The number 4 or 5 digit ID
+        String username = "YOUR USERNAME";//The username used to log into the Control Panel
+        String APIKey = "YOUR REPORTING KEY";
+        String reportType = "REPORT TYPE";//accountData, messagesDelivered, etc
+        String replyFormat = "REPORT FORMAT";//format used in the reply
+        String reportInfo = null;
+    	
+        try {
+              Authenticator.setDefault (new Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                  return new PasswordAuthentication (username,APIKey.toCharArray());
+                  }
+              });
+            URL serviceURL = new URL 
+           ("https://api.socketlabs.com/v1/"+reportType+"?serverId="+serverId+"&type="+replyFormat);
+            HttpURLConnection connection = (HttpURLConnection) serviceURL.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setDoOutput(true);
+            InputStream content = (InputStream)connection.getInputStream();
+            BufferedReader read = 
+                new BufferedReader (new InputStreamReader (content));
+            try{
+            reportInfo = read.readLine();//for CSV format you will need to handle reading multiple lines      
+            read.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return reportInfo;
+    }
+    
+}
