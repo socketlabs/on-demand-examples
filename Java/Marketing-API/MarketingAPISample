@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *This class contains multiple methods for accessing
+ *each of the group functions of the Marketing API
  */
 package APITests;
 
@@ -18,10 +17,6 @@ import java.util.Base64;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- *
- * @author keithmcmanus
- */
 
 public class MarketingAPIExamples {
     public static void main (String[] args) {
