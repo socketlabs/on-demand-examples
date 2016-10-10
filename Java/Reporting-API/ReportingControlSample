@@ -24,7 +24,8 @@ public class ReportingControlSample {
         String replyFormat = "REPORT FORMAT";//format used in the reply
         String reportInfo = null;
     	
-        try {
+        try 
+	{
               Authenticator.setDefault (new Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
                   return new PasswordAuthentication (username,APIKey.toCharArray());
@@ -38,7 +39,8 @@ public class ReportingControlSample {
             InputStream content = (InputStream)connection.getInputStream();
             BufferedReader read = 
                 new BufferedReader (new InputStreamReader (content));
-            try{
+            try
+	    {
             reportInfo = read.readLine();//for CSV format you will need to handle reading multiple lines      
             read.close();
             } catch (IOException e) {
