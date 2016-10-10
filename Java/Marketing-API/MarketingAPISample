@@ -35,9 +35,7 @@ public class MarketingAPIExamples {
         try
         {
             encoding = Base64.getEncoder().encodeToString((serverId +":"+APIKey).getBytes("utf-8") );
-        }
-        catch (Exception d) 
-        {
+        }catch (Exception d){
             d.printStackTrace();
         }
         //create the one-line json      
@@ -65,9 +63,7 @@ public class MarketingAPIExamples {
                 wr = new OutputStreamWriter(out);
                 wr.write(json);
                 wr.close();
-            } 
-            catch (IOException e) 
-            {
+            }catch (IOException e){
                 e.printStackTrace();
             }
                   
@@ -78,16 +74,12 @@ public class MarketingAPIExamples {
                 read = new BufferedReader(new InputStreamReader(in));
                 line = read.readLine();
                 read.close();
-            } 
-            catch (IOException e)
-            {
+            }catch (IOException e){
                 e.printStackTrace();
             }
                     
             connection.disconnect();
-        }
-        catch(Exception e)
-        {
+        }catch(Exception e){
             e.printStackTrace();
         }
         return line;
@@ -107,9 +99,7 @@ public class MarketingAPIExamples {
         try
         {
             encoding = Base64.getEncoder().encodeToString((serverId +":"+APIKey).getBytes("utf-8") );
-        } 
-        catch (Exception d)
-        {
+        }catch (Exception d){
             d.printStackTrace();
         }
             
@@ -134,16 +124,12 @@ public class MarketingAPIExamples {
                 read = new BufferedReader(new InputStreamReader(in));
                 line = read.readLine();
                 read.close();
-            } 
-            catch (IOException e)
-            {
+            }catch (IOException e){
                 e.printStackTrace();
             }
             connection.disconnect();
              
-        }     
-        catch(Exception e)
-        {
+        }catch(Exception e){
             e.printStackTrace();
         }
         return line;
@@ -169,9 +155,7 @@ public class MarketingAPIExamples {
         try
         {
             encoding = Base64.getEncoder().encodeToString((serverId +":"+APIKey).getBytes("utf-8") );
-        }
-        catch (Exception d) 
-        {
+        }catch (Exception d){
             d.printStackTrace();
         }
         //create the input JSON, single entry in this sample    
@@ -201,9 +185,7 @@ public class MarketingAPIExamples {
                 wr = new OutputStreamWriter(out);
                 wr.write(json);
                 wr.close();
-            } 
-            catch (IOException e) 
-            {
+            }catch (IOException e){
                 e.printStackTrace();
             }
             //reads the response from the server
@@ -214,16 +196,12 @@ public class MarketingAPIExamples {
                 read = new BufferedReader(new InputStreamReader(in));
                 line = read.readLine();
                 read.close();
-            } 
-            catch (IOException e)
-            {
+            }catch (IOException e){
                 e.printStackTrace();
             }            
             connection.disconnect();
         
-        }    
-        catch(Exception e)
-        {
+        }catch(Exception e){
               e.printStackTrace();
         }
         return line;
@@ -240,9 +218,7 @@ public class MarketingAPIExamples {
         try
         {
             encoding = Base64.getEncoder().encodeToString((serverId +":"+APIKey).getBytes("utf-8") );
-        }
-        catch (Exception d) 
-        {
+        }catch (Exception d){
             d.printStackTrace();
         }
 
@@ -261,15 +237,11 @@ public class MarketingAPIExamples {
                 read = new BufferedReader(new InputStreamReader(in));
                 reportInfo = read.readLine();      
                 read.close();
-            } 
-            catch (IOException e)
-            {
+            }catch (IOException e){
                 e.printStackTrace();
             }
         connection.disconnect();       
-        } 
-        catch(Exception e) 
-        {
+        }catch(Exception e){
             e.printStackTrace();
         }
         return line;
