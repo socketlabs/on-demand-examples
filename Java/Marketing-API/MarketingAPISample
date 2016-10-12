@@ -1,0 +1,251 @@
+/**
+ *This class contains multiple methods for accessing
+ *each of the group functions of the Marketing API
+ */
+
+import com.google.gson.Gson;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Base64;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+
+public class MarketingAPIExamples {
+       
+    private static String unsubscribeContact()
+    {
+        String emailAddress = "test@example.com";
+        String serverId = "YOUR SERVER ID";//The number 4 or 5 digit ID
+        String APIKey = "YOUR MARKETING API";
+        String encoding = null;
+        String serviceURL = "https://api.socketlabs.com/marketing/v1/contacts/unsubscribe/";
+        String json;
+        String line = null;
+        Gson gson = new Gson();
+        Map contact = new LinkedHashMap();
+        
+        //encode credentials for AUthorization header
+        try
+        {
+            encoding = Base64.getEncoder().encodeToString((serverId +":"+APIKey).getBytes("utf-8") );
+        }catch (Exception d){
+            d.printStackTrace();
+        }
+        //create the one-line json      
+        contact.put("emailAddress", emailAddress);
+        json = gson.toJson(contact);
+            
+        //with the JSON object created and the authorization credentials created
+        //we can open the connection and set the address to unsubscribed
+        try
+        {
+            URL myURL = new URL(serviceURL);
+            HttpURLConnection connection = (HttpURLConnection)myURL.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty  ("Authorization","Basic "+encoding);
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setUseCaches(false);
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            connection.setAllowUserInteraction(false);
+            
+            OutputStream out = connection.getOutputStream();
+            OutputStreamWriter wr = null;
+            try 
+            {
+                wr = new OutputStreamWriter(out);
+                wr.write(json);
+                wr.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+                  
+            InputStream in = connection.getInputStream();
+            BufferedReader read = null;
+            try
+            {
+                read = new BufferedReader(new InputStreamReader(in));
+                line = read.readLine();
+                read.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+                    
+            connection.disconnect();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return line;
+    }
+    
+    private static String deleteContact()
+    {
+        String emailAddress;
+        String serverId;
+        String APIKey;
+        String serviceURL;
+        HttpURLConnection connection;
+        String encoding = null;
+        String listId;
+        String line = null;
+        //encode credentials
+        try
+        {
+            encoding = Base64.getEncoder().encodeToString((serverId +":"+APIKey).getBytes("utf-8") );
+        }catch (Exception d){
+            d.printStackTrace();
+        }
+            
+        try
+        {
+            emailAddress = "test@example.com";
+            serverId = "YOUR SERVER ID";
+            APIKey = "YOUR MARKETING AIP KEY";
+            listId = "LIST ID";//List IDs can be found using the getList method
+            serviceURL = "https://api.socketlabs.com/marketing/v1/lists/"+listId+"/contacts/?emailAddress="+emailAddress;
+
+            //establish connection
+            URL myURL = new URL(serviceURL);
+            connection = (HttpURLConnection)myURL.openConnection();
+            connection.setRequestMethod("DELETE");
+            connection.setRequestProperty  ("Authorization","Basic "+encoding);
+       
+            InputStream in = connection.getInputStream();
+            BufferedReader read = null;
+            try
+            {
+                read = new BufferedReader(new InputStreamReader(in));
+                line = read.readLine();
+                read.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            connection.disconnect();
+             
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return line;
+    }
+    
+    private static String addContact()
+    {
+        //The marketing API does not support adding custom fields though this method.
+        String emailAddress = "test@example.com";
+        String firstName = "Jon";
+        String lastName = "Doe";
+        String listId = "YOUR LIST ID";//List IDs can be found using the getList method
+        String serverId = "YOUR SERVER ID";//The number 4 or 5 digit ID
+        String APIKey = "YOUR MARKETING API KEY";
+        String encoding = null;
+        String serviceURL = "https://api.socketlabs.com/marketing/v1/lists/"+listId+"/contacts";
+        String json;
+        String line = null;
+        Gson gson = new Gson();
+        Map contact = new LinkedHashMap();
+        
+        //encode credentials for AUthorization header
+        try
+        {
+            encoding = Base64.getEncoder().encodeToString((serverId +":"+APIKey).getBytes("utf-8") );
+        }catch (Exception d){
+            d.printStackTrace();
+        }
+        //create the input JSON, single entry in this sample    
+        contact.put("emailAddress", emailAddress);
+        contact.put("firstName",firstName);
+        contact.put("lastName",lastName);
+        json = gson.toJson(contact);
+            
+        //with the JSON object created and the authorization crednetials created
+        //we can open the connection and add the contact to the list
+        try
+        {
+            URL myURL = new URL(serviceURL);
+            HttpURLConnection connection = (HttpURLConnection)myURL.openConnection();
+            connection.setRequestMethod("PUT");
+            connection.setRequestProperty  ("Authorization","Basic "+encoding);
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setUseCaches(false);
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            connection.setAllowUserInteraction(false);
+            //writes the entry to your list
+            OutputStream out = connection.getOutputStream();
+            OutputStreamWriter wr = null;
+            try 
+            {
+                wr = new OutputStreamWriter(out);
+                wr.write(json);
+                wr.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            //reads the response from the server
+            InputStream in = connection.getInputStream();
+            BufferedReader read = null;
+            try
+            {
+                read = new BufferedReader(new InputStreamReader(in));
+                line = read.readLine();
+                read.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }            
+            connection.disconnect();
+        
+        }catch(Exception e){
+              e.printStackTrace();
+        }
+        return line;
+    }   
+    
+    private static String getList() {
+        String serverId = "YOUR SERVER ID";//The number 4 or 5 digit ID
+        String APIKey = "YOUR MARKETING API KEY";
+        String line = null;
+        String encoding = null;
+        String serviceURL = "https://api.socketlabs.com/marketing/v1/lists";
+       
+        
+        try
+        {
+            encoding = Base64.getEncoder().encodeToString((serverId +":"+APIKey).getBytes("utf-8") );
+        }catch (Exception d){
+            d.printStackTrace();
+        }
+
+        try 
+        {
+            URL myURL = new URL (serviceURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestProperty  ("Authorization","Basic "+encoding);
+            connection.setRequestMethod("GET");
+            connection.setDoOutput(true);
+
+            InputStream in = (InputStream)connection.getInputStream();
+            BufferedReader read = null;
+            try
+            {
+                read = new BufferedReader(new InputStreamReader(in));
+                reportInfo = read.readLine();      
+                read.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        connection.disconnect();       
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return line;
+    }
+}
+    
+
