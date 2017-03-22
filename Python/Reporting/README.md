@@ -16,6 +16,7 @@ pip install socketlabs
 >>> username = <username>
 >>> password = <password>
 >>> serverid = <serverid>
->>> socketlabs = SocketLabs(username = username, password = password, serverid = serverid)
+>>> socketlabs = SocketLabs(username=username, password=password,
+                            serverid=serverid)
 >>> failed = socketlabs.failedMessages()
 ```
