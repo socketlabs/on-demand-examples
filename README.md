@@ -14,6 +14,7 @@ The Reporting API examples show how to retrieve information about messages sent 
 - Node.js
 - PHP
 - Perl
+- Python
 
 **Sample code for the Injection API:**
 - Microsoft.NET Platform (C#)
@@ -29,4 +30,4 @@ The Reporting API examples show how to retrieve information about messages sent 
 - Microsoft.NET - ASP.NET MVC 3 (C#)
 - Node.js
 
-See http://api.socketlabs.com for complete API documentation.
+See https://www.socketlabs.com/api-reference/ for complete API documentation.
