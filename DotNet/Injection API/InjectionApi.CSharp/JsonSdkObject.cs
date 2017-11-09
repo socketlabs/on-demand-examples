@@ -12,7 +12,7 @@ namespace SocketLabs.InjectionApi.CSharp
     {
         /// <summary>
         /// This example uses the SocketLabs SDK PostBody object to create a POST
-        /// request for sending one or more SMTP messages through Email-On-Demand.
+        /// request for sending one or more SMTP messages through SocketLabs On-Demand.
         /// The SocketLabs SDK library is required, and for this example we also use
         /// the RestSharp library to ask as our serializer and client.
         /// 

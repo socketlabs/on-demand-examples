@@ -63,7 +63,7 @@ namespace SocketLabs.SmtpInjection.CSharp.Multithreaded
             objMessage.BodyParts.Add("Hi ##FIRSTNAME##, Thank you for your interest in ##PRODUCT##.", BodyPartFormat.Plain, BodyPartEncoding.QuotedPrintable);
             Dictionary<string, string> tokens = new Dictionary<string, string>();
             tokens["##FIRSTNAME##"] = "John";
-            tokens["##PRODUCT##"] = "SocketLabs Email On-Demand";
+            tokens["##PRODUCT##"] = "SocketLabs On-Demand";
             objMessage.BodyParts[0].Body = BulkReplace(objMessage.BodyParts[0].Body, tokens);
 
             objSMTP.Send(objMessage);

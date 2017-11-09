@@ -1,6 +1,6 @@
 var request = require('request'),
 
-    userName = "YOUR-USERNAME", //The username you use to log into the SocketLabs Email On-Demand Control Panel
+    userName = "YOUR-USERNAME", //The username you use to log into the SocketLabs On-Demand Control Panel
     apiKey = "YOUR-API-KEY", //Your SocketLabs Reporting API key
     serverId = "XXXXX", //Your 4 or 5 digit ServerID number
     method = "messagesFailed"; //The API method to call.  Options are accountData, messagesFailed, messagesQueued, messagesProcessed, messagesFblReported, messagesOpenClick
