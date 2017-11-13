@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// This example program shows how to send SMTP messages through HTTP via the SocketLabs
-    /// Email On-Demand Injection API. These examples show both simple and more complicated
+    /// On-Demand Injection API. These examples show both simple and more complicated
     /// sample uses. For complete information on the use of all supported parameters, please
     /// see the official API documentation on the SocketLabs website.
     /// </summary>
