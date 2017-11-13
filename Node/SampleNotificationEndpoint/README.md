@@ -1,8 +1,8 @@
-## SocketLabs Email On-Demand Notification API Endpoint in Node.js
+## SocketLabs On-Demand Notification API Endpoint in Node.js
 
-This is an example application that can be used as an endpoint for the [SocketLabs Email On-Demand Notification API](http://www.socketlabs.com/api-reference/notification-api/).  The application uses [Node](https://nodejs.org/) and [Express](http://expressjs.com/) to create a simple endpoint that can listen for and process HTTP notifications from our platform.  The application will listen for POST requests on port 3000 at your application's URL/notifications, for example `http://api.example.com:3000/notifications` 
+This is an example application that can be used as an endpoint for the [SocketLabs On-Demand Notification API](http://www.socketlabs.com/api-reference/notification-api/).  The application uses [Node](https://nodejs.org/) and [Express](http://expressjs.com/) to create a simple endpoint that can listen for and process HTTP notifications from our platform.  The application will listen for POST requests on port 3000 at your application's URL/notifications, for example `http://api.example.com:3000/notifications` 
 
-To get started, you must first navigate to the Notification API configuration page in the [SocketLabs Email On-Demand Control Panel](https://cp.socketlabs.com).  From here, you'll need to grab your Secret Key and Validation key, and plug those keys into the Node application's app.js file (we have included the placeholder text where you will insert these keys).
+To get started, you must first navigate to the Notification API configuration page in the [SocketLabs On-Demand Control Panel](https://cp.socketlabs.com).  From here, you'll need to grab your Secret Key and Validation key, and plug those keys into the Node application's app.js file (we have included the placeholder text where you will insert these keys).
 
 Once you have updated the app.js file to include your Secret Key and Validation Key, you are ready to upload the application to your web server or hosting provider.  You can start the application by running the command `node app.js` in your web server's console or terminal (please be sure that you are in the directory that contains the app.js file for this application).
 
