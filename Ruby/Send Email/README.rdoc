@@ -1,6 +1,6 @@
 = SocketLabs Gem
 
-Ruby gem for sending email through SocketLabs Email On-Demand
+Ruby gem for sending email through SocketLabs On-Demand
 
 == Installation
   
