@@ -6,6 +6,6 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "request":"~2.69.0"
+    "request":"^2.88.0"
   }
 }
