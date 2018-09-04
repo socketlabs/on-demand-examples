@@ -30,8 +30,8 @@ namespace SocketLabs.SmtpInjection.CSharp
                 msg.Headers.Add("X-xsMessageId", "MyCampaign");
                 msg.Headers.Add("X-xsMailingId", "12345");
                 
-                msg.From = new MailAddress("ben@contoso.com");
-                msg.To.Add("jane@contoso.com");
+                msg.From = new MailAddress("ben@example.com");
+                msg.To.Add("jane@example.com");
                 msg.Subject = "Using the SMTP client with SocketLabs.";
                 msg.Body = "<h1>Hello</h1><p>How are you doing today?</p>";
                 msg.IsBodyHtml = true;
